@@ -22,12 +22,14 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
+    "types": ["jest"],
     "paths": {
       "@my-mlb/shared": [
         "../../Packages/Shared/src"
       ]
     }
   },
+  "include": ["src", "**/*.test.ts", "**/*.spec.ts"],
   "references": [
     {
       "path": "../../Packages/Shared/tsconfig.json"
