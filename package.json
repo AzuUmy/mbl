@@ -1,0 +1,12 @@
+{
+  "name": "my-mlb-app",
+  "private": true,
+  "workspaces": [
+    "Apps/*",
+    "Packages/*"
+  ],
+  "scripts": {
+    "dev:Frontend": "pnpm --filter frontend dev",
+    "dev:Backend": "pnpm --filter backend start:dev"
+  }
+}

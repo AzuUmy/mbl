@@ -1,0 +1,204 @@
+# TailwindCSS Cheat Sheet
+
+ 1️⃣ Layout & Display
+
+block            <!-- block display -->
+inline-block     <!-- inline-block display -->
+inline           <!-- inline display -->
+flex             <!-- flex container -->
+inline-flex      <!-- inline flex container -->
+grid             <!-- grid container -->
+hidden           <!-- display: none -->
+
+2️⃣ Flexbox
+
+flex-row         <!-- horizontal flex direction -->
+flex-col         <!-- vertical flex direction -->
+flex-wrap        <!-- wrap flex items -->
+flex-nowrap      <!-- no wrap -->
+items-start      <!-- vertical align start -->
+items-center     <!-- vertical align center -->
+items-end        <!-- vertical align end -->
+justify-start    <!-- horizontal align start -->
+justify-center   <!-- horizontal align center -->
+justify-end      <!-- horizontal align end -->
+justify-between  <!-- space between -->
+justify-around   <!-- space around -->
+flex-grow        <!-- grow to fill space -->
+flex-shrink      <!-- shrink -->
+
+3️⃣ Spacing (Padding & Margin)
+
+p-4              <!-- padding all sides 1rem -->
+pt-2             <!-- padding-top 0.5rem -->
+pr-6             <!-- padding-right 1.5rem -->
+pb-8             <!-- padding-bottom 2rem -->
+pl-1             <!-- padding-left 0.25rem -->
+px-4             <!-- padding horizontal 1rem -->
+py-2             <!-- padding vertical 0.5rem -->
+m-4              <!-- margin all sides 1rem -->
+mt-2             <!-- margin-top 0.5rem -->
+mb-10            <!-- margin-bottom 2.5rem -->
+ml-6             <!-- margin-left 1.5rem -->
+mr-8             <!-- margin-right 2rem -->
+mx-auto          <!-- horizontal center with auto margin -->
+gap-4            <!-- gap -->
+
+4️⃣ Sizing
+
+w-4 → w-96      <!-- width 0.25rem → 24rem -->
+h-4 → h-96      <!-- height 0.25rem → 24rem -->
+w-full           <!-- width 100% -->
+h-full           <!-- height 100% -->
+min-w-full       <!-- minimum width 100% -->
+min-h-screen     <!-- minimum height 100vh -->
+max-w-md         <!-- maximum width -->
+
+5️⃣ Colors
+
+bg-red-500       <!-- background red shade 500 -->
+bg-blue-300      <!-- background blue shade 300 -->
+text-green-700   <!-- text color green 700 -->
+border-gray-400  <!-- border color gray 400 -->
+bg-opacity-50    <!-- background opacity 50% -->
+text-opacity-75  <!-- text opacity 75% -->
+bg-[#1E293B]     <!-- custom background color -->
+text-[rgb(30,41,59)] <!-- custom text color -->
+
+6️⃣ Borders & Radius
+
+border           <!-- 1px border -->
+border-2         <!-- 2px border -->
+border-t         <!-- top border only -->
+border-b         <!-- bottom border only -->
+border-l         <!-- left border only -->
+border-r         <!-- right border only -->
+border-red-500   <!-- border color -->
+rounded          <!-- default radius -->
+rounded-sm       <!-- small radius -->
+rounded-md       <!-- medium radius -->
+rounded-lg       <!-- large radius -->
+rounded-xl       <!-- extra large radius -->
+rounded-2xl      <!-- bigger radius -->
+rounded-full     <!-- fully rounded / circle -->
+rounded-t-lg     <!-- top corners only -->
+
+7️⃣ Shadows
+
+shadow-sm        <!-- small shadow -->
+shadow           <!-- default shadow -->
+shadow-md        <!-- medium shadow -->
+shadow-lg        <!-- large shadow -->
+shadow-xl        <!-- extra large shadow -->
+shadow-2xl       <!-- very large shadow -->
+shadow-inner     <!-- inner shadow -->
+shadow-none      <!-- remove shadow -->
+
+8️⃣ Typography
+
+text-xs → text-9xl  <!-- font size -->
+font-thin → font-black  <!-- font weight -->
+font-sans / font-serif / font-mono  <!-- font family -->
+text-left / text-center / text-right <!-- text alignment -->
+uppercase / lowercase / capitalize   <!-- text transform -->
+leading-4 → leading-loose           <!-- line height -->
+tracking-tight → tracking-widest    <!-- letter spacing -->
+
+9️⃣ Positioning
+
+relative        <!-- position relative -->
+absolute        <!-- position absolute -->
+fixed           <!-- fixed to viewport -->
+sticky          <!-- sticky positioning -->
+top-0 / bottom-4 / left-1/2 / right-0 <!-- position offsets -->
+z-10            <!-- z-index -->
+inset-0         <!-- top/right/bottom/left 0 -->
+inset-x-0       <!-- left/right 0 -->
+inset-y-0       <!-- top/bottom 0 -->
+
+🔟 Flex & Transform Helpers
+
+transform          <!-- enable transforms -->
+scale-95           <!-- scale 95% -->
+rotate-45          <!-- rotate 45deg -->
+translate-x-1/2    <!-- move right 50% -->
+-translate-x-1/2   <!-- move left 50% -->
+translate-y-1/2    <!-- move down 50% -->
+-translate-y-1/2   <!-- move up 50% -->
+
+1️⃣1️⃣ Overflow & Visibility
+
+overflow-auto      <!-- scroll if content overflows -->
+overflow-hidden    <!-- hide overflowing content -->
+overflow-x-scroll  <!-- horizontal scroll -->
+overflow-y-scroll  <!-- vertical scroll -->
+visible            <!-- visible -->
+invisible          <!-- hidden but takes space -->
+
+1️⃣2️⃣ Opacity
+
+opacity-0 → opacity-100  <!-- element opacity -->
+bg-opacity-50            <!-- background opacity -->
+text-opacity-50          <!-- text opacity -->
+
+1️⃣3️⃣ Hover / Focus / Responsive
+
+hover:bg-red-500      <!-- change bg on hover -->
+focus:outline-none    <!-- remove focus outline -->
+sm:p-4 md:p-6 lg:p-8  <!-- responsive padding -->
+
+1️⃣4️⃣  Built-in Animation Classes
+
+
+// ================================
+// TailwindCSS Animation Cheat Sheet
+// ================================
+
+<div className="flex flex-col gap-4 p-4">
+
+  {/* 1️⃣ Built-in Animations */}
+  <div className="w-12 h-12 bg-red-500 rounded-full animate-bounce"></div>  {/* Bounce up & down */}
+  <div className="w-12 h-12 bg-blue-500 rounded-full animate-spin"></div>   {/* Rotates continuously */}
+  <div className="w-12 h-12 bg-green-500 rounded-full animate-pulse"></div>  {/* Fades in/out */}
+  <div className="w-12 h-12 bg-yellow-500 rounded-full animate-ping"></div>  {/* Expanding ping effect */}
+
+  {/* 2️⃣ Adjust Speed / Duration */}
+  <div className="w-12 h-12 bg-red-500 rounded-full animate-bounce duration-500 ease-in-out"></div>
+  <div className="w-12 h-12 bg-blue-500 rounded-full animate-spin duration-1000 ease-linear"></div>
+  <div className="w-12 h-12 bg-green-500 rounded-full animate-pulse duration-700 ease-in-out"></div>
+
+  {/* 3️⃣ Hover / Focus Transitions */}
+  <button className="bg-blue-500 hover:bg-blue-700 text-white p-4 rounded transition-colors duration-300 ease-in-out">
+    Hover me
+  </button>
+
+  <div className="w-16 h-16 bg-red-500 rounded-full hover:bg-red-700 transition-colors duration-300 ease-in-out"></div>
+
+  <div className="w-16 h-16 bg-green-500 rounded-full hover:scale-110 transform transition-transform duration-300 ease-in-out"></div>
+
+  {/* 4️⃣ Custom transform + transition */}
+  <div className="w-16 h-16 bg-purple-500 rounded-full hover:rotate-12 transform transition-transform duration-500 ease-in-out"></div>
+  <div className="w-16 h-16 bg-pink-500 rounded-full hover:translate-y-2 transform transition-transform duration-500 ease-in-out"></div>
+
+  {/* 5️⃣ Example Icon with Bounce */}
+  {/* Import from @mui/icons-material */}
+  {/* import { SportsFootballRounded } from "@mui/icons-material"; */}
+  <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 
+                  bg-slate-200 bg-opacity-50 shadow-lg p-4 rounded-full 
+                  animate-bounce">
+    <SportsFootballRounded className="w-8 h-8 text-red-500" />
+  </div>
+
+</div>
+
+// ================================
+// Notes / Tips
+// ================================
+// animate-bounce / animate-spin / animate-pulse / animate-ping
+// duration-500 / duration-1000 → speed of animation in ms
+// ease-linear / ease-in / ease-out / ease-in-out → easing function
+// transition / transition-all / transition-colors / transition-opacity
+// hover: prefix works with transition/scale/color
+// transform → required for scale, rotate, translate utilities
+
+
