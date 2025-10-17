@@ -7,8 +7,8 @@ import { ScheduleGames } from './Entities/schedule.entity';
 export class ScheduleResolver {
   constructor(private readonly scheduleService: ScheduleService) {}
 
-  @Query(() => [ScheduleGames], { name: 'scheduleGames' })
-  async scheduleGames(): Promise<ScheduleGames[]> {
+  @Query(() => ScheduleGames, { name: 'scheduleGames' })
+  async scheduleGames(): Promise<ScheduleGames> {
     return this.scheduleService.getSchedule();
   }
 }

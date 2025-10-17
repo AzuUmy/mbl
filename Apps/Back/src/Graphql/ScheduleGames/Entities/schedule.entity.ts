@@ -14,6 +14,6 @@ export class ScheduleGames {
   @Field(() => [Game])
   games!: Game[];
 
-  @Field()
-  _comment!: string;
+  @Field({ nullable: true })
+  _comment?: string;
 }

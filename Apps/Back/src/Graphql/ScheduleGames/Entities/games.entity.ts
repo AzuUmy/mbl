@@ -36,11 +36,11 @@ export class Game {
   @Field()
   ps_game!: string;
 
-  @Field()
-  attendance!: string;
+  @Field({ nullable: true })
+  attendance?: string;
 
-  @Field()
-  duration!: string;
+  @Field({nullable: true})
+  duration?: string;
 
   @Field()
   double_header!: boolean;

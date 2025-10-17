@@ -24,7 +24,7 @@ let ScheduleResolver = class ScheduleResolver {
 };
 exports.ScheduleResolver = ScheduleResolver;
 __decorate([
-    (0, graphql_1.Query)(() => [schedule_entity_1.ScheduleGames], { name: 'scheduleGames' }),
+    (0, graphql_1.Query)(() => schedule_entity_1.ScheduleGames, { name: 'scheduleGames' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)

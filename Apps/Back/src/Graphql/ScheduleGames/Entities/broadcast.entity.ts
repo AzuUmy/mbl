@@ -12,6 +12,6 @@ export class Broadcast {
   @Field()
   locale!: string;
 
-  @Field()
-  channel!: string;
+  @Field({ nullable: true })
+  channel?: string;
 }

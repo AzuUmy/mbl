@@ -12,8 +12,8 @@ export declare class Game {
     away_team: string;
     ps_round: string;
     ps_game: string;
-    attendance: string;
-    duration: string;
+    attendance?: string;
+    duration?: string;
     double_header: boolean;
     entry_mode: string;
     reference: string;

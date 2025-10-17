@@ -9,32 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Broadcast = void 0;
+exports.ScheduleGames = void 0;
 const graphql_1 = require("@nestjs/graphql");
-let Broadcast = class Broadcast {
-    network;
-    type;
-    locale;
-    channel;
+const legue_entity_1 = require("./legue.entity");
+const games_entity_1 = require("./games.entity");
+let ScheduleGames = class ScheduleGames {
+    league;
+    date;
+    games;
+    _comment;
 };
-exports.Broadcast = Broadcast;
+exports.ScheduleGames = ScheduleGames;
+__decorate([
+    (0, graphql_1.Field)(() => legue_entity_1.League),
+    __metadata("design:type", legue_entity_1.League)
+], ScheduleGames.prototype, "league", void 0);
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], Broadcast.prototype, "network", void 0);
+], ScheduleGames.prototype, "date", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Broadcast.prototype, "type", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
-], Broadcast.prototype, "locale", void 0);
+    (0, graphql_1.Field)(() => [games_entity_1.Game]),
+    __metadata("design:type", Array)
+], ScheduleGames.prototype, "games", void 0);
 __decorate([
     (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
-], Broadcast.prototype, "channel", void 0);
-exports.Broadcast = Broadcast = __decorate([
+], ScheduleGames.prototype, "_comment", void 0);
+exports.ScheduleGames = ScheduleGames = __decorate([
     (0, graphql_1.ObjectType)()
-], Broadcast);
-//# sourceMappingURL=broadcast.entity.js.map
+], ScheduleGames);
+//# sourceMappingURL=schedule.entity.js.map

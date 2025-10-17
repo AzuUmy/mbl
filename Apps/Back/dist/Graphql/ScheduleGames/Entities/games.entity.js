@@ -77,11 +77,11 @@ __decorate([
     __metadata("design:type", String)
 ], Game.prototype, "ps_game", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], Game.prototype, "attendance", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
+    (0, graphql_1.Field)({ nullable: true }),
     __metadata("design:type", String)
 ], Game.prototype, "duration", void 0);
 __decorate([
