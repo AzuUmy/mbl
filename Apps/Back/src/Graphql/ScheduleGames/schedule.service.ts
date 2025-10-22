@@ -3,7 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { ScheduleGames } from './Entities/schedule.entity';
 import { Logger } from '@nestjs/common';
 import { apiUrl, token, locale, format } from 'src/Api/api';
-import { Games } from '../../../../../Packages/Shared/src/Types/gamesMLBTypes';
+import { Games } from '@my-mlb/shared/Types/gamesMLBTypes';
+
 
 @Injectable()
 export class ScheduleService {

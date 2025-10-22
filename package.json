@@ -6,7 +6,14 @@
     "Packages/*"
   ],
   "scripts": {
-    "dev:Frontend": "pnpm --filter frontend dev",
-    "dev:Backend": "pnpm --filter backend start:dev"
+    "dev:Frontend": "pnpm --filter mlb dev --host",
+    "dev:Backend": "pnpm --filter Back dev",
+    "dev": "concurrently -n \"Front,Back\" -c \"cyan,green\" \"pnpm dev:Frontend\" \"pnpm dev:Backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3"
   }
 }

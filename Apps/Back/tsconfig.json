@@ -22,11 +22,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "types": ["jest"],
+    "types": ["node", "jest"],
     "paths": {
-      "@my-mlb/shared": [
-        "../../Packages/Shared/src"
-      ]
+      "@my-mlb/shared": ["../../Packages/Shared/dist"],
+      "@my-mlb/shared/*": ["../../Packages/Shared/dist/*"]
     }
   },
   "include": ["src", "**/*.test.ts", "**/*.spec.ts"],
