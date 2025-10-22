@@ -6,15 +6,7 @@ import { ScheduleModule } from './ScheduleGames/schedule.modules';
 // import { GamesModule } from './Games/games.module';
 
 @Module({
-  imports: [
-    ScheduleModule,
-    // TeamsModule,
-    // GamesModule,
-  ],
-  exports: [
-    ScheduleModule,
-    // TeamsModule,
-    // GamesModule,
-  ],
+  imports: [ScheduleModule],
+  exports: [ScheduleModule],
 })
 export class GraphQLModules {}

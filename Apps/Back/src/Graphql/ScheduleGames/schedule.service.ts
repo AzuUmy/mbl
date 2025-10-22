@@ -1,21 +1,21 @@
-// graphql/ScheduleGames/schedule.service.ts
 import { Injectable } from '@nestjs/common';
 import { ScheduleGames } from './Entities/schedule.entity';
 import { Logger } from '@nestjs/common';
 import { apiUrl, token, locale, format } from 'src/Api/api';
 import { Games } from '@my-mlb/shared/Types/gamesMLBTypes';
 
-
 @Injectable()
 export class ScheduleService {
-  async getSchedule(): Promise<ScheduleGames> {
-    const year = '2025';
-    const month = '10';
-    const day = '16';
-
+  async getSchedule(
+    year: string,
+    month: string,
+    day: string,
+  ): Promise<ScheduleGames> {
     const response = await fetch(
       `${apiUrl}/${locale}/games/${year}/${month}/${day}/schedule.${format}?api_key=${token}`,
     );
+
+    Logger.log('Querying schedule Games');
     const data = await response.json();
 
     return {

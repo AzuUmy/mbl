@@ -1,5 +1,4 @@
-// graphql/ScheduleGames/schedule.resolver.ts
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Args } from '@nestjs/graphql';
 import { ScheduleService } from './schedule.service';
 import { ScheduleGames } from './Entities/schedule.entity';
 
@@ -8,7 +7,11 @@ export class ScheduleResolver {
   constructor(private readonly scheduleService: ScheduleService) {}
 
   @Query(() => ScheduleGames, { name: 'scheduleGames' })
-  async scheduleGames(): Promise<ScheduleGames> {
-    return this.scheduleService.getSchedule();
+  async scheduleGames(
+    @Args('Year', { type: () => String }) year: string,
+    @Args('Month', { type: () => String }) month: string,
+    @Args('Day', { type: () => String }) day: string,
+  ): Promise<ScheduleGames> {
+    return this.scheduleService.getSchedule(year, month, day);
   }
 }
