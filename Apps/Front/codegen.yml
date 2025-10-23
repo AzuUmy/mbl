@@ -1,0 +1,16 @@
+schema: "http://localhost:3000/graphql"
+documents: "src/api/graphql/**/*.ts"
+generates:
+  src/api/graphql/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      addTypename: true
+      avoidOptionals: false
+      skipTypename: false
+      dedupeOperationSuffix: true
+      typesPrefix: ""
+      # No document generation—keep gql in source files
+      noExport: false
+      # No gql import or DocumentNode—handled in source

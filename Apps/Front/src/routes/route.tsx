@@ -1,4 +1,3 @@
-// src/App.tsx
 import MainLayout from "../layouts/MainLayout";
 import { Routes, Route } from "react-router-dom";
 import { Games } from "../pages/Games";
