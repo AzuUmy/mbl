@@ -1,4 +1,3 @@
-// graphql/entities/game.entity.ts
 import { ObjectType, Field, ID, Int } from '@nestjs/graphql';
 import { Venue } from './venu.entity';
 import { Team } from './team.entity';
