@@ -5,13 +5,13 @@ import { Game } from './games.entity';
 
 @ObjectType()
 export class ScheduleGames {
-  @Field(() => League)
+  @Field(() => League, {nullable: true})
   league!: League;
 
-  @Field()
+  @Field( {nullable: true})
   date!: string;
 
-  @Field(() => [Game])
+  @Field(() => [Game], {nullable: true})
   games!: Game[];
 
   @Field({ nullable: true })

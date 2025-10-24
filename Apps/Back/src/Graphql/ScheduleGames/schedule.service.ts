@@ -8,24 +8,52 @@ import { Games } from '@my-mlb/shared/Types/gamesMLBTypes';
 export class ScheduleService {
   async getSchedule(
     year: string,
-    month: string,
-    day: string,
-  ): Promise<ScheduleGames> {
-    const response = await fetch(
-      `${apiUrl}/${locale}/games/${year}/${month}/${day}/schedule.${format}?api_key=${token}`,
-    );
+    startDate: string,
+    endDate: string,
+  ): Promise<ScheduleGames[]> {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    const scheduleGames: ScheduleGames[] = [];
 
-    Logger.log('Querying schedule Games');
-    const data = await response.json();
+    for (let i = new Date(start); i <= end; i.setDate(i.getDate() + 1)) {
+      const month = String(i.getMonth() + 1).padStart(2, '0');
+      const day = String(i.getDate()).padStart(2, '0');
 
-    return {
-      league: data.league,
-      date: data.date,
-      games: data.games.map((game: Games) => ({
+      try {
+        const response = await fetch(
+          `${apiUrl}/${locale}/games/${year}/${month}/${day}/schedule.${format}?api_key=${token}`,
+        );
+
+        const data = await response.json();
+
+        const games =
+          data.games?.map((game: Games) => ({
+            ...game,
+            duration: game.duration ?? 'NA',
+          })) ?? [];
+
+        scheduleGames.push({
+          league: data.league ?? null,
+          date: data.date ?? `${year}-${month}-${day}`,
+          games,
+          _comment: data._comment ?? null,
+        });
+      } catch (error) {
+        Logger.warn(`No games found for the date ${month}, ${day}`);
+      }
+    }
+
+
+    console.log(scheduleGames)
+
+    return scheduleGames.map((schedule) => ({
+      league: schedule.league ?? null,
+      date: schedule.date ?? 'N/A',
+      games: schedule.games.map((game) => ({
         ...game,
         duration: game.duration ?? 'N/A',
       })),
-      _comment: data._comment,
-    };
+      _comment: schedule._comment,
+    }));
   }
 }

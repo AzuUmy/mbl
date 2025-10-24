@@ -6,12 +6,12 @@ import { ScheduleGames } from './Entities/schedule.entity';
 export class ScheduleResolver {
   constructor(private readonly scheduleService: ScheduleService) {}
 
-  @Query(() => ScheduleGames, { name: 'scheduleGames' })
+  @Query(() => [ScheduleGames], { name: 'scheduleGames' })
   async scheduleGames(
-    @Args('Year', { type: () => String }) year: string,
-    @Args('Month', { type: () => String }) month: string,
-    @Args('Day', { type: () => String }) day: string,
-  ): Promise<ScheduleGames> {
-    return this.scheduleService.getSchedule(year, month, day);
+    @Args('Year', { type: () => String }) Year: string,
+    @Args('startDate', { type: () => String }) startDate: string,
+    @Args('endDate', { type: () => String }) endDate: string,
+  ): Promise<ScheduleGames[]> {
+    return this.scheduleService.getSchedule(Year, startDate, endDate);
   }
 }
