@@ -7,6 +7,12 @@ async function bootstrap() {
     bufferLogs: true,
   });
 
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+
   app.enableShutdownHooks();
 
   const logger = new Logger('Bootstrap');

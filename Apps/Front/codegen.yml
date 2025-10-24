@@ -11,6 +11,4 @@ generates:
       skipTypename: false
       dedupeOperationSuffix: true
       typesPrefix: ""
-      # No document generation—keep gql in source files
       noExport: false
-      # No gql import or DocumentNode—handled in source
