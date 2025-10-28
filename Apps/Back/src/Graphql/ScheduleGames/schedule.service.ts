@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ScheduleGames } from './Entities/schedule.entity';
+import { ScheduleGames, ScheduleGamesSeries } from './Entities/schedule.entity';
 import { Logger } from '@nestjs/common';
 import { apiUrl, token, locale, format } from 'src/Api/api';
 import { Games } from '@my-mlb/shared/Types/gamesMLBTypes';
+import { Game } from './Entities/games.entity';
 
 @Injectable()
 export class ScheduleService {
@@ -10,7 +11,7 @@ export class ScheduleService {
     year: string,
     startDate: string,
     endDate: string,
-  ): Promise<ScheduleGames[]> {
+  ): Promise<ScheduleGamesSeries[]> {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const scheduleGames: ScheduleGames[] = [];
@@ -43,17 +44,25 @@ export class ScheduleService {
       }
     }
 
+    const seriesMap = new Map<string, Game[]>();
 
-    console.log(scheduleGames)
+    scheduleGames.forEach((day) => {
+      day.games.forEach((game) => {
+        const round = game.ps_round ?? 'Unknown';
+        if (!seriesMap.has(round)) {
+          seriesMap.set(round, []);
+        }
+        seriesMap.get(round)!.push(game);
+      });
+    });
 
-    return scheduleGames.map((schedule) => ({
-      league: schedule.league ?? null,
-      date: schedule.date ?? 'N/A',
-      games: schedule.games.map((game) => ({
-        ...game,
-        duration: game.duration ?? 'N/A',
-      })),
-      _comment: schedule._comment,
+    const seriesGroups: ScheduleGamesSeries[] = Array.from(
+      seriesMap.entries(),
+    ).map(([series, games]) => ({
+      series,
+      games,
     }));
+
+    return seriesGroups;
   }
 }
