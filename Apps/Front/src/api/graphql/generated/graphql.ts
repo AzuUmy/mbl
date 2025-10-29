@@ -55,22 +55,20 @@ export type League = {
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String']['output'];
-  scheduleGames: ScheduleGames;
+  scheduleGames: Array<ScheduleGamesSeries>;
 };
 
 
 export type QueryScheduleGamesArgs = {
-  Day: Scalars['String']['input'];
-  Month: Scalars['String']['input'];
   Year: Scalars['String']['input'];
+  endDate: Scalars['String']['input'];
+  startDate: Scalars['String']['input'];
 };
 
-export type ScheduleGames = {
-  __typename?: 'ScheduleGames';
-  _comment?: Maybe<Scalars['String']['output']>;
-  date: Scalars['String']['output'];
+export type ScheduleGamesSeries = {
+  __typename?: 'ScheduleGamesSeries';
   games: Array<Game>;
-  league: League;
+  series: Scalars['String']['output'];
 };
 
 export type Team = {
@@ -102,10 +100,10 @@ export type Venue = {
 };
 
 export type ScheduleGamesQueryVariables = Exact<{
-  Day: Scalars['String']['input'];
-  Month: Scalars['String']['input'];
+  startDate: Scalars['String']['input'];
+  endDate: Scalars['String']['input'];
   Year: Scalars['String']['input'];
 }>;
 
 
-export type ScheduleGamesQuery = { __typename?: 'Query', scheduleGames: { __typename?: 'ScheduleGames', date: string, league: { __typename?: 'League', name: string, alias: string, id: string }, games: Array<{ __typename?: 'Game', id: string, status: string, scheduled: string, ps_round: string, ps_game: string, home: { __typename?: 'Team', name: string, market: string, abbr: string, win: number, loss: number }, away: { __typename?: 'Team', name: string, market: string, abbr: string, win: number, loss: number }, venue: { __typename?: 'Venue', name: string, city: string, state: string }, broadcasts: Array<{ __typename?: 'Broadcast', network: string, type: string, locale: string, channel?: string | null }> }> } };
+export type ScheduleGamesQuery = { __typename?: 'Query', scheduleGames: Array<{ __typename?: 'ScheduleGamesSeries', series: string, games: Array<{ __typename?: 'Game', id: string, status: string, coverage: string, game_number: string, day_night: string, scheduled: string, home_team: string, away_team: string, ps_round: string, ps_game: string, attendance?: string | null, duration?: string | null, double_header: boolean, entry_mode: string, reference: string, venue: { __typename?: 'Venue', name: string, market: string, capacity: string, surface: string, address: string, city: string, state: string, zip: string, country: string, id: string, field_orientation: string, stadium_type: string, time_zone: string }, home: { __typename?: 'Team', name: string, market: string, abbr: string, id: string, seed: number, win: number, loss: number }, away: { __typename?: 'Team', name: string, market: string, abbr: string, id: string, seed: number, win: number, loss: number }, broadcasts: Array<{ __typename?: 'Broadcast', network: string, type: string, locale: string, channel?: string | null }> }> }> };

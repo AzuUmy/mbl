@@ -11,7 +11,7 @@ export function NavigationTop({ setOpenSideMenu }: NavigationTopProps) {
   }
 
   return (
-    <div className="flex justify-between align items-center">
+    <div className="flex justify-between align items-center z-10">
       <Menu
         onClick={toggleSideMenu}
         className="text-black sm:!h-[30px] sm:!w-[30px] transition-colors duration-300"

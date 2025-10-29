@@ -1,24 +1,46 @@
 import { gql } from '@apollo/client';
 
 export const ScheduleGamesDocument = gql`
-  query ScheduleGames($Day: String!, $Month: String!, $Year: String!) {
-    scheduleGames(Day: $Day, Month: $Month, Year: $Year) {
-      date
-      league {
-        name
-        alias
-        id
-      }
+  query ScheduleGames($startDate: String!, $endDate: String!, $Year: String!) {
+    scheduleGames(startDate: $startDate, endDate: $endDate, Year: $Year) {
+      series
       games {
         id
         status
+        coverage
+        game_number
+        day_night
         scheduled
+        home_team
+        away_team
         ps_round
         ps_game
+        attendance
+        duration
+        double_header
+        entry_mode
+        reference
+        venue {
+          name
+          market
+          capacity
+          surface
+          address
+          city
+          state
+          zip
+          country
+          id
+          field_orientation
+          stadium_type
+          time_zone
+        }
         home {
           name
           market
           abbr
+          id
+          seed
           win
           loss
         }
@@ -26,13 +48,10 @@ export const ScheduleGamesDocument = gql`
           name
           market
           abbr
+          id
+          seed
           win
           loss
-        }
-        venue {
-          name
-          city
-          state
         }
         broadcasts {
           network
