@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
+// example: apps/back/src/app.resolver.ts
 const graphql_1 = require("@nestjs/graphql");
 let AppResolver = class AppResolver {
     hello() {

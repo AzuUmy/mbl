@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.winstonLogger = exports.winstonTransports = void 0;
+// src/logger/winston.config.ts
 const nest_winston_1 = require("nest-winston");
 const winston_1 = require("winston");
 const winston_daily_rotate_file_1 = __importDefault(require("winston-daily-rotate-file"));

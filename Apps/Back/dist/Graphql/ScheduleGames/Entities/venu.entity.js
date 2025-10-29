@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Venue = void 0;
+// graphql/entities/venue.entity.ts
 const graphql_1 = require("@nestjs/graphql");
 let Venue = class Venue {
     name;

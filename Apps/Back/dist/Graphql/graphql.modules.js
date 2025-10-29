@@ -7,8 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GraphQLModules = void 0;
+// apps/back/src/Graphql/graphql.modules.ts
 const common_1 = require("@nestjs/common");
 const schedule_modules_1 = require("./ScheduleGames/schedule.modules");
+// import other GraphQL modules here
+// import { TeamsModule } from './Teams/teams.module';
+// import { GamesModule } from './Games/games.module';
 let GraphQLModules = class GraphQLModules {
 };
 exports.GraphQLModules = GraphQLModules;
