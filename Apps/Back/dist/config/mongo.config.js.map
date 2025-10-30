@@ -1,0 +1,1 @@
+{"version":3,"file":"mongo.config.js","sourceRoot":"","sources":["../../src/config/mongo.config.ts"],"names":[],"mappings":";;;AAAA,6BAA6B;AAC7B,2CAA+C;AAGlC,QAAA,WAAW,GAAG;IACzB,MAAM,EAAE,CAAC,sBAAa,CAAC;IACvB,UAAU,EAAE,CAAC,MAAqB,EAAgC,EAAE,CAAC,CAAC;QACpE,GAAG,EAAE,MAAM,CAAC,GAAG,CAAS,aAAa,CAAC;KACvC,CAAC;CACH,CAAC;AAEF,GAAG"}

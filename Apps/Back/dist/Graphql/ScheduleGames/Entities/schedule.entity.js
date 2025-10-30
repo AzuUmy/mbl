@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduleGamesSeries = exports.ScheduleGames = void 0;
-// graphql/entities/schedule.entity.ts
 const graphql_1 = require("@nestjs/graphql");
 const legue_entity_1 = require("./legue.entity");
 const games_entity_1 = require("./games.entity");

@@ -1,4 +1,3 @@
-// graphql/entities/schedule.entity.ts
 import { ObjectType, Field } from '@nestjs/graphql';
 import { League } from './legue.entity';
 import { Game } from './games.entity';
@@ -9,7 +8,7 @@ export class ScheduleGames {
   league!: League;
 
   @Field({ nullable: true })
-  date!: string;
+  date?: string;
 
   @Field(() => [Game], { nullable: true })
   games!: Game[];

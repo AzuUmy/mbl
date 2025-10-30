@@ -4,9 +4,19 @@ import { Logger } from '@nestjs/common';
 import { apiUrl, token, locale, format } from 'src/Api/api';
 import { Games } from '@my-mlb/shared/Types/gamesMLBTypes';
 import { Game } from './Entities/games.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import {
+  ScheduleGameDocument,
+} from 'src/schema/scheduleGames/scheduleGames.schema';
 
 @Injectable()
 export class ScheduleService {
+  constructor(
+    @InjectModel(ScheduleGames.name)
+    private readonly scheduleGamesModel: Model<ScheduleGameDocument>,
+  ) {}
+
   async getSchedule(
     year: string,
     startDate: string,
@@ -38,10 +48,15 @@ export class ScheduleService {
           games,
           _comment: data._comment ?? null,
         });
+
+
       } catch (error) {
         Logger.warn(`No games found for the date ${month}, ${day}`);
       }
     }
+
+      await this.scheduleGamesModel.insertMany(scheduleGames)
+
 
     const seriesMap = new Map<string, Game[]>();
 

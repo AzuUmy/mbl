@@ -16,13 +16,20 @@ const nest_winston_1 = require("nest-winston");
 const Logger_1 = require("./Logs/Logger");
 const apollo_1 = require("@nestjs/apollo");
 const graphql_modules_1 = require("./Graphql/graphql.modules");
-const prisma_module_1 = require("./prisma/prisma.module"); // <-- import PrismaModule
+const prisma_module_1 = require("./prisma/prisma.module");
+const config_1 = require("@nestjs/config");
+const mongoose_1 = require("@nestjs/mongoose");
+const mongo_config_1 = require("./config/mongo.config");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+            }),
+            mongoose_1.MongooseModule.forRootAsync(mongo_config_1.mongoConfig),
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: true,
@@ -30,7 +37,7 @@ exports.AppModule = AppModule = __decorate([
                 debug: true,
             }),
             graphql_modules_1.GraphQLModules,
-            prisma_module_1.PrismaModule, // <-- include it here
+            prisma_module_1.PrismaModule,
             nest_winston_1.WinstonModule.forRoot({
                 transports: Logger_1.winstonTransports,
                 level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',

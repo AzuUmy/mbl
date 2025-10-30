@@ -10,11 +10,18 @@ exports.ScheduleModule = void 0;
 const common_1 = require("@nestjs/common");
 const schedule_service_1 = require("./schedule.service");
 const schedule_resolver_1 = require("./schedule.resolver");
+const mongoose_1 = require("@nestjs/mongoose");
+const scheduleGames_schema_1 = require("../../schema/scheduleGames/scheduleGames.schema");
 let ScheduleModule = class ScheduleModule {
 };
 exports.ScheduleModule = ScheduleModule;
 exports.ScheduleModule = ScheduleModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            mongoose_1.MongooseModule.forFeature([
+                { name: scheduleGames_schema_1.ScheduleGames.name, schema: scheduleGames_schema_1.ScheduleGamesSchema },
+            ]),
+        ],
         providers: [schedule_service_1.ScheduleService, schedule_resolver_1.ScheduleResolver],
         exports: [schedule_service_1.ScheduleService],
     })

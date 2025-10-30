@@ -11,7 +11,6 @@ export class TeamsResolver {
   async Teams(): Promise<Teams[]> {
     try {
       const teams = this.teamsService.getAllTeams();
-
       return teams;
     } catch (error) {
       Logger.warn(`No Teams insertted ${error}`);
