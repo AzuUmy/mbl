@@ -7,6 +7,7 @@ import { WinstonModule } from 'nest-winston';
 import { winstonTransports } from './Logs/Logger';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModules } from './Graphql/graphql.modules';
+import { PrismaModule } from './prisma/prisma.module'; // <-- import PrismaModule
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { GraphQLModules } from './Graphql/graphql.modules';
       debug: true,
     }),
     GraphQLModules,
+    PrismaModule, // <-- include it here
     WinstonModule.forRoot({
       transports: winstonTransports,
       level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',

@@ -26,7 +26,6 @@ export class ScheduleService {
         );
 
         const data = await response.json();
-
         const games =
           data.games?.map((game: Games) => ({
             ...game,

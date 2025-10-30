@@ -6,17 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraphQLModules = void 0;
+exports.PrismaService = void 0;
+// src/prisma/prisma.service.ts
 const common_1 = require("@nestjs/common");
-const schedule_modules_1 = require("./ScheduleGames/schedule.modules");
-const teams_modules_1 = require("./Teams/teams.modules");
-let GraphQLModules = class GraphQLModules {
+const client_1 = require("@prisma/client");
+let PrismaService = class PrismaService extends client_1.PrismaClient {
+    async onModuleInit() {
+        await this.$connect();
+    }
+    async onModuleDestroy() {
+        await this.$disconnect();
+    }
 };
-exports.GraphQLModules = GraphQLModules;
-exports.GraphQLModules = GraphQLModules = __decorate([
-    (0, common_1.Module)({
-        imports: [schedule_modules_1.ScheduleModule, teams_modules_1.TeamsModule],
-        exports: [schedule_modules_1.ScheduleModule, teams_modules_1.TeamsModule],
-    })
-], GraphQLModules);
-//# sourceMappingURL=graphql.modules.js.map
+exports.PrismaService = PrismaService;
+exports.PrismaService = PrismaService = __decorate([
+    (0, common_1.Injectable)()
+], PrismaService);
+//# sourceMappingURL=prisma.service.js.map

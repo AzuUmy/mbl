@@ -6,17 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GraphQLModules = void 0;
+exports.TeamsModule = void 0;
 const common_1 = require("@nestjs/common");
-const schedule_modules_1 = require("./ScheduleGames/schedule.modules");
-const teams_modules_1 = require("./Teams/teams.modules");
-let GraphQLModules = class GraphQLModules {
+const teams_service_1 = require("./teams.service");
+const teams_resolver_1 = require("./teams.resolver");
+let TeamsModule = class TeamsModule {
 };
-exports.GraphQLModules = GraphQLModules;
-exports.GraphQLModules = GraphQLModules = __decorate([
+exports.TeamsModule = TeamsModule;
+exports.TeamsModule = TeamsModule = __decorate([
     (0, common_1.Module)({
-        imports: [schedule_modules_1.ScheduleModule, teams_modules_1.TeamsModule],
-        exports: [schedule_modules_1.ScheduleModule, teams_modules_1.TeamsModule],
+        providers: [teams_service_1.TeamsService, teams_resolver_1.TeamsResolver],
+        exports: [teams_service_1.TeamsService],
     })
-], GraphQLModules);
-//# sourceMappingURL=graphql.modules.js.map
+], TeamsModule);
+//# sourceMappingURL=teams.modules.js.map

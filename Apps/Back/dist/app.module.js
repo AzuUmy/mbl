@@ -16,6 +16,7 @@ const nest_winston_1 = require("nest-winston");
 const Logger_1 = require("./Logs/Logger");
 const apollo_1 = require("@nestjs/apollo");
 const graphql_modules_1 = require("./Graphql/graphql.modules");
+const prisma_module_1 = require("./prisma/prisma.module"); // <-- import PrismaModule
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,6 +30,7 @@ exports.AppModule = AppModule = __decorate([
                 debug: true,
             }),
             graphql_modules_1.GraphQLModules,
+            prisma_module_1.PrismaModule, // <-- include it here
             nest_winston_1.WinstonModule.forRoot({
                 transports: Logger_1.winstonTransports,
                 level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
