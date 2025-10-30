@@ -2,8 +2,6 @@ import { Resolver, Query } from '@nestjs/graphql';
 import { Teams } from './Entities/teams.entity';
 import { TeamsService } from './teams.service';
 import { Logger } from '@nestjs/common';
-import { apiUrl, format, token, locale } from 'src/Api/api';
-import { Team } from '../ScheduleGames/Entities/team.entity';
 
 @Resolver(() => Teams)
 export class TeamsResolver {
