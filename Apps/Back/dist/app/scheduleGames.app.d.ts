@@ -4,4 +4,5 @@ export declare class ScheduleGamesApp {
     private readonly scheduleService;
     constructor(scheduleService: ScheduleService);
     getScheduleGamesSeries(startDate: string, endDate: string): Promise<ScheduleGamesSeries[]>;
+    getScheduleGamesFromApi(year: string, month: string, day: string): Promise<void>;
 }

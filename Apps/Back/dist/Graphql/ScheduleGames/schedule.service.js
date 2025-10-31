@@ -22,6 +22,9 @@ let ScheduleService = class ScheduleService {
     constructor(scheduleGamesModel) {
         this.scheduleGamesModel = scheduleGamesModel;
     }
+    async createScheduleGames(scheduleGames) {
+        this.scheduleGamesModel.create(scheduleGames);
+    }
     async getScheduleGames(startDate, endDate) {
         const scheduleGames = await this.scheduleGamesModel.aggregate([
             {

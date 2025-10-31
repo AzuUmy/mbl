@@ -11,6 +11,10 @@ export class ScheduleService {
     private readonly scheduleGamesModel: Model<ScheduleGameDocument>,
   ) {}
 
+  async createScheduleGames(scheduleGames: ScheduleGames[]) {
+    this.scheduleGamesModel.create(scheduleGames);
+  }
+
   async getScheduleGames(startDate: string, endDate: string): Promise<games[]> {
     const scheduleGames = await this.scheduleGamesModel.aggregate([
       {

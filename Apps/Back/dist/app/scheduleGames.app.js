@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduleGamesApp = void 0;
 const common_1 = require("@nestjs/common");
 const schedule_service_1 = require("../Graphql/ScheduleGames/schedule.service");
+const common_2 = require("@nestjs/common");
+const api_1 = require("../services/Api/api");
 let ScheduleGamesApp = class ScheduleGamesApp {
     scheduleService;
     constructor(scheduleService) {
@@ -33,6 +35,16 @@ let ScheduleGamesApp = class ScheduleGamesApp {
             });
         });
         return scheduleGamesSeries;
+    }
+    async getScheduleGamesFromApi(year, month, day) {
+        try {
+            const response = await fetch(`${api_1.apiUrl}/${api_1.locale}/${year}/${month}/${day}/schedule${api_1.format}/api_key=${api_1.token}`);
+            const data = (await response.json());
+            this.scheduleService.createScheduleGames([data]);
+        }
+        catch (error) {
+            common_2.Logger.error('Error fetching schedule games from API:', error);
+        }
     }
 };
 exports.ScheduleGamesApp = ScheduleGamesApp;

@@ -11,6 +11,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { mongoConfig } from './config/mongo.config';
+import { CronModule } from './cron/cron.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { mongoConfig } from './config/mongo.config';
       transports: winstonTransports,
       level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
     }),
+    CronModule,
   ],
   controllers: [AppController],
   providers: [AppService, AppResolver],

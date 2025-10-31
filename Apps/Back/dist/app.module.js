@@ -20,6 +20,7 @@ const prisma_module_1 = require("./prisma/prisma.module");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongo_config_1 = require("./config/mongo.config");
+const cron_module_1 = require("./cron/cron.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -42,6 +43,7 @@ exports.AppModule = AppModule = __decorate([
                 transports: Logger_1.winstonTransports,
                 level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
             }),
+            cron_module_1.CronModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, app_resolver_1.AppResolver],

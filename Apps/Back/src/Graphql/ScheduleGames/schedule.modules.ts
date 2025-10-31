@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ScheduleGames, ScheduleGamesSchema } from 'src/schema/scheduleGames/scheduleGames.schema';
 import { ScheduleGamesApp } from 'src/app/scheduleGames.app';
 
+
 @Module({
   imports: [
     MongooseModule.forFeature([

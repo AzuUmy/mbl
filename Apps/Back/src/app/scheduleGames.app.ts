@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ScheduleService } from 'src/Graphql/ScheduleGames/schedule.service';
 import { ScheduleGamesSeries } from 'src/Graphql/ScheduleGames/Entities/schedule.entity';
-
+import { Logger } from '@nestjs/common';
+import { apiUrl, format, locale, token } from 'src/services/Api/api';
+import { ScheduleGames } from '@my-mlb/shared/Types/gamesMLBTypes';
 @Injectable()
 export class ScheduleGamesApp {
   constructor(private readonly scheduleService: ScheduleService) {}
@@ -32,5 +34,18 @@ export class ScheduleGamesApp {
     });
 
     return scheduleGamesSeries;
+  }
+
+  async getScheduleGamesFromApi(year: string, month: string, day: string) {
+    try {
+      const response = await fetch(
+        `${apiUrl}/${locale}/${year}/${month}/${day}/schedule${format}/api_key=${token}`,
+      );
+      const data = (await response.json()) as ScheduleGames;
+
+      this.scheduleService.createScheduleGames([data]);
+    } catch (error) {
+      Logger.error('Error fetching schedule games from API:', error);
+    }
   }
 }
