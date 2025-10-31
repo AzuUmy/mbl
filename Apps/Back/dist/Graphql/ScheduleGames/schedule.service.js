@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduleService = void 0;
 const common_1 = require("@nestjs/common");
 const schedule_entity_1 = require("./Entities/schedule.entity");
-const common_2 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let ScheduleService = class ScheduleService {
@@ -23,57 +22,15 @@ let ScheduleService = class ScheduleService {
     constructor(scheduleGamesModel) {
         this.scheduleGamesModel = scheduleGamesModel;
     }
-    async getSchedule(startDate, endDate) {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
-        const scheduleGames = [];
-        for (let i = new Date(start); i <= end; i.setDate(i.getDate() + 1)) {
-            const month = String(i.getMonth() + 1).padStart(2, '0');
-            const day = String(i.getDate()).padStart(2, '0');
-            try {
-                // const response = await fetch(
-                // `${apiUrl}/${locale}/games/${year}/${month}/${day}/schedule.${format}?api_key=${token}`,
-                //);
-                // const data = await response.json();
-                const data = this.scheduleGamesModel.aggregate([
-                    { $match: {}
-                    },
-                    {
-                        $sort: { _id: 1 },
-                    },
-                ]);
-                const games = (await data).map((game) => ({
-                    ...game,
-                    duration: game.games.map((e) => e.duration) ?? 'NA',
-                })) ?? [];
-                games.forEach((e) => {
-                    scheduleGames.push({
-                        league: e.league ?? null,
-                        date: e.date ?? `${month}-${day}`,
-                        games: e.games ?? [],
-                        _comment: e._comment ?? null,
-                    });
-                });
-            }
-            catch (error) {
-                common_2.Logger.warn(`No games found for the date ${month}, ${day}`);
-            }
-        }
-        const seriesMap = new Map();
-        scheduleGames.forEach((day) => {
-            day.games.forEach((game) => {
-                const round = game.ps_round ?? 'Unknown';
-                if (!seriesMap.has(round)) {
-                    seriesMap.set(round, []);
-                }
-                seriesMap.get(round).push(game);
-            });
-        });
-        const seriesGroups = Array.from(seriesMap.entries()).map(([series, games]) => ({
-            series,
-            games,
-        }));
-        return seriesGroups;
+    async getScheduleGames(startDate, endDate) {
+        const scheduleGames = await this.scheduleGamesModel.aggregate([
+            {
+                $match: {
+                    date: { $gte: startDate, $lte: endDate },
+                },
+            },
+        ]);
+        return scheduleGames;
     }
 };
 exports.ScheduleService = ScheduleService;

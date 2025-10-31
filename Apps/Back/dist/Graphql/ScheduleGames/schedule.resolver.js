@@ -14,15 +14,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScheduleResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const schedule_service_1 = require("./schedule.service");
 const schedule_entity_1 = require("./Entities/schedule.entity");
+const scheduleGames_app_1 = require("../../app/scheduleGames.app");
 let ScheduleResolver = class ScheduleResolver {
-    scheduleService;
-    constructor(scheduleService) {
-        this.scheduleService = scheduleService;
+    scheduleGamesApp;
+    constructor(scheduleGamesApp) {
+        this.scheduleGamesApp = scheduleGamesApp;
     }
     async scheduleGames(startDate, endDate) {
-        return this.scheduleService.getSchedule(startDate, endDate);
+        return this.scheduleGamesApp.getScheduleGamesSeries(startDate, endDate);
     }
 };
 exports.ScheduleResolver = ScheduleResolver;
@@ -36,6 +36,6 @@ __decorate([
 ], ScheduleResolver.prototype, "scheduleGames", null);
 exports.ScheduleResolver = ScheduleResolver = __decorate([
     (0, graphql_1.Resolver)(() => schedule_entity_1.ScheduleGamesSeries),
-    __metadata("design:paramtypes", [schedule_service_1.ScheduleService])
+    __metadata("design:paramtypes", [scheduleGames_app_1.ScheduleGamesApp])
 ], ScheduleResolver);
 //# sourceMappingURL=schedule.resolver.js.map
