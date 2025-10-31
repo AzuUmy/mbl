@@ -16,7 +16,6 @@ exports.ScheduleService = void 0;
 const common_1 = require("@nestjs/common");
 const schedule_entity_1 = require("./Entities/schedule.entity");
 const common_2 = require("@nestjs/common");
-const api_1 = require("../../Api/api");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let ScheduleService = class ScheduleService {
@@ -24,7 +23,7 @@ let ScheduleService = class ScheduleService {
     constructor(scheduleGamesModel) {
         this.scheduleGamesModel = scheduleGamesModel;
     }
-    async getSchedule(year, startDate, endDate) {
+    async getSchedule(startDate, endDate) {
         const start = new Date(startDate);
         const end = new Date(endDate);
         const scheduleGames = [];
@@ -32,24 +31,34 @@ let ScheduleService = class ScheduleService {
             const month = String(i.getMonth() + 1).padStart(2, '0');
             const day = String(i.getDate()).padStart(2, '0');
             try {
-                const response = await fetch(`${api_1.apiUrl}/${api_1.locale}/games/${year}/${month}/${day}/schedule.${api_1.format}?api_key=${api_1.token}`);
-                const data = await response.json();
-                const games = data.games?.map((game) => ({
+                // const response = await fetch(
+                // `${apiUrl}/${locale}/games/${year}/${month}/${day}/schedule.${format}?api_key=${token}`,
+                //);
+                // const data = await response.json();
+                const data = this.scheduleGamesModel.aggregate([
+                    { $match: {}
+                    },
+                    {
+                        $sort: { _id: 1 },
+                    },
+                ]);
+                const games = (await data).map((game) => ({
                     ...game,
-                    duration: game.duration ?? 'NA',
+                    duration: game.games.map((e) => e.duration) ?? 'NA',
                 })) ?? [];
-                scheduleGames.push({
-                    league: data.league ?? null,
-                    date: data.date ?? `${year}-${month}-${day}`,
-                    games,
-                    _comment: data._comment ?? null,
+                games.forEach((e) => {
+                    scheduleGames.push({
+                        league: e.league ?? null,
+                        date: e.date ?? `${month}-${day}`,
+                        games: e.games ?? [],
+                        _comment: e._comment ?? null,
+                    });
                 });
             }
             catch (error) {
                 common_2.Logger.warn(`No games found for the date ${month}, ${day}`);
             }
         }
-        await this.scheduleGamesModel.insertMany(scheduleGames);
         const seriesMap = new Map();
         scheduleGames.forEach((day) => {
             day.games.forEach((game) => {

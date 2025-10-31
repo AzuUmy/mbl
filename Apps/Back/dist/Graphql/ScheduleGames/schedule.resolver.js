@@ -21,18 +21,17 @@ let ScheduleResolver = class ScheduleResolver {
     constructor(scheduleService) {
         this.scheduleService = scheduleService;
     }
-    async scheduleGames(Year, startDate, endDate) {
-        return this.scheduleService.getSchedule(Year, startDate, endDate);
+    async scheduleGames(startDate, endDate) {
+        return this.scheduleService.getSchedule(startDate, endDate);
     }
 };
 exports.ScheduleResolver = ScheduleResolver;
 __decorate([
     (0, graphql_1.Query)(() => [schedule_entity_1.ScheduleGamesSeries], { name: 'scheduleGames' }),
-    __param(0, (0, graphql_1.Args)('Year', { type: () => String })),
-    __param(1, (0, graphql_1.Args)('startDate', { type: () => String })),
-    __param(2, (0, graphql_1.Args)('endDate', { type: () => String })),
+    __param(0, (0, graphql_1.Args)('startDate', { type: () => String })),
+    __param(1, (0, graphql_1.Args)('endDate', { type: () => String })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
 ], ScheduleResolver.prototype, "scheduleGames", null);
 exports.ScheduleResolver = ScheduleResolver = __decorate([

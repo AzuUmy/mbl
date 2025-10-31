@@ -4,5 +4,5 @@ import { ScheduleGameDocument } from 'src/schema/scheduleGames/scheduleGames.sch
 export declare class ScheduleService {
     private readonly scheduleGamesModel;
     constructor(scheduleGamesModel: Model<ScheduleGameDocument>);
-    getSchedule(year: string, startDate: string, endDate: string): Promise<ScheduleGamesSeries[]>;
+    getSchedule(startDate: string, endDate: string): Promise<ScheduleGamesSeries[]>;
 }
